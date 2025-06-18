@@ -7,7 +7,6 @@ on:
       - 'air_quality_raw.csv/**'
   workflow_dispatch:
 
-
 jobs:
   preprocess:
     runs-on: ubuntu-latest
@@ -28,3 +27,9 @@ jobs:
       - name: Run preprocessing
         run: |
           python preprocessing/automate_Karinda-Amelia.py
+
+      - name: Upload preprocessed dataset
+        uses: actions/upload-artifact@v4
+        with:
+          name: preprocessed-air-quality-dataset
+          path: preprocessing/air_quality_preprocessing.csv
